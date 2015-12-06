@@ -13,8 +13,7 @@ import static org.junit.Assert.assertEquals;
 @SuppressWarnings("unused")
 public class SparkWrapperTest {
 
-    private SparkWrapper createGreeter(final URL url,
-                                             final String message) {
+    private SparkWrapper createGreeter(final URL url, final String message) {
         SparkWrapper server = new SparkWrapper(url.getHost(), url.getPort());
         server.get(url.getPath(), (request, response) -> message);
         server.awaitInitialisation();
@@ -39,8 +38,8 @@ public class SparkWrapperTest {
              SparkWrapper serverB = createGreeter(urlB, "hiB");
              InputStream inputStreamA = urlA.openStream();
              InputStream inputStreamB = urlB.openStream()) {
-            assertEquals(IOUtils.toString(inputStreamA), "hiA");
-            assertEquals(IOUtils.toString(inputStreamB), "hiB");
+            assertEquals("hiA", IOUtils.toString(inputStreamA));
+            assertEquals("hiB", IOUtils.toString(inputStreamB));
         }
     }
 
